@@ -110,7 +110,7 @@ if section == "Part 1: Interactive":
     st.subheader(f"📋 Here's the '{dataset_name}' dataset:")
     st.dataframe(df, use_container_width=True)
 
-    tab1, tab2 = st.tabs(["🤔 Ask Me", "📊 Look At Me"])
+    tab1, tab2 = st.tabs(["🤔 Talk To Me", "📊 Look At Me"])
 
     with tab1:
         st.subheader("Some questions you might ask:")
