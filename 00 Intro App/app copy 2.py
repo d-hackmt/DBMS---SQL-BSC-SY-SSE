@@ -241,7 +241,7 @@ Return ONLY the pandas code. No explanation.
 elif section == "Part 2: OLAP/OLTP":
     st.title("🏢 OLTP vs OLAP and Data Warehousing")
     st.write("This diagram helps you understand how companies move data from operational systems to analytical systems.")
-    st.image("ok.png", caption="Data Flow from OLTP to OLAP")
+    st.image("img.png", caption="Data Flow from OLTP to OLAP")
 
 elif section == "Part 3: Tech Overview":
     st.title("🛠️ Technologies in Data Handling")
