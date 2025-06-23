@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
-
+import google.generativeai as genai
 from data import datasets, default_questions
 from utils import extract_schema, execute_pandas_code
 
@@ -11,6 +11,7 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="langchain")
 
 # Gemini Setup
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
 st.sidebar.title("📚 DBMS Intro Lecture")
