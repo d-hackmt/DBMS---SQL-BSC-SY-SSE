@@ -7,6 +7,9 @@ from utils import extract_schema, execute_pandas_code
 
 import altair as alt
 
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="langchain")
+
 # Gemini Setup
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
