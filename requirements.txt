@@ -1,0 +1,6 @@
+streamlit
+pandas
+altair
+langchain
+langchain-google-genai
+google-generativeai
