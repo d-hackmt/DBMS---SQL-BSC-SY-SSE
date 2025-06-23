@@ -1,5 +1,7 @@
 ### Check it out : https://sqlintro.streamlit.app/
 
+![image](https://github.com/user-attachments/assets/da28195f-b5b6-41ff-88c2-8e51bfcb5563)
+
 
 ## 📊 DBMS & SQL Interactive Streamlit App
 
