@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+import google.generativeai as genai
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 
@@ -92,6 +93,8 @@ def execute_pandas_code(code: str, df: pd.DataFrame):
         st.error(f"❌ Error: {e}")
 
 # ------------- Gemini Model Setup -------------
+
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
 # ------------- Streamlit UI -------------
