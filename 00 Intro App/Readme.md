@@ -22,12 +22,16 @@ This app is designed to help students learn the basics of **databases**, **SQL-s
     - Auto-generated charts based on dataset type:
       - Bar charts, Line charts, Pie charts, etc. using **Altair**.
 
+---
+
 #### 🏢 Part 2: OLTP vs OLAP
 - Learn how data is generated and stored in real-world companies.
 - Understand the difference between:
   - **OLTP (Online Transaction Processing)** – used in CRMs, ERPs, etc.
   - **OLAP (Online Analytical Processing)** – used in reporting, dashboards, etc.
 - A clear diagram is provided to explain the **data warehousing pipeline**.
+
+---
 
 #### 🧰 Part 3: Tech Overview
 - Overview of tools used in industry for handling and visualizing data:
