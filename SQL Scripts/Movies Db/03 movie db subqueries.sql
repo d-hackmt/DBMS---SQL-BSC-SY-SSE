@@ -119,7 +119,7 @@ where age  > 70 and age < 85;
 
 #---------------------------------------------------------------------------------------------------|
 #                                                                                                   |
-#	                                        so now we saw                                           |
+#	                                    so now we saw                                           |
 #                                                                                                   |
 #                        1) Subquery returns a value                                                |
 #                                                                                                   |
@@ -130,12 +130,12 @@ where age  > 70 and age < 85;
 
 #---------------------------------------------------------------------------------------------------|
 #
-#									LETS Study , ANY & ALL operators .
+#				LETS Study , ANY & ALL operators .
 #
 #---------------------------------------------------------------------------------------------------|
 
 
-# lets say you want to select all the actors who want to select all actors 
+# lets say you want to select all the actors 
 # who has worked in any of the movies (101,110,121)
 
 
@@ -238,7 +238,7 @@ where studio like "%marvel%"
 
 #---------------------------------------------------------------------------------------------------|
 #
-#					LETS Study , Co - related subquery , Performance analysis
+#			LETS Study , Co - related subquery , Performance analysis
 #
 #---------------------------------------------------------------------------------------------------|
 
