@@ -1,7 +1,7 @@
-# Lets make db 
+# Lets make database
 
 
-Hello guys , the below link will take you to demonstrations of how to make a db from scratch
+Hello guys , the below link will take you to demonstrations of how to make a db(database) from scratch
 
 Link to videos : https://drive.google.com/drive/folders/1NZ47nohQXQaD9E6j1V32EPTCIegoz7j_?usp=sharing
 
