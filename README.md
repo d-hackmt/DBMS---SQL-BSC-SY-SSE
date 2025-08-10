@@ -4,8 +4,4 @@
 
 This repo contains all the syllabus and studying materials covered in the classroom.
 
-Refer to the below link for MYSQL related operations
-
-https://github.com/d-hackmt/SQL-SSE
-
 
