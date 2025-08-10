@@ -5,3 +5,6 @@
 This repo contains all the syllabus and studying materials covered in the classroom.
 
 
+###  Here are some takeaways 
+
+https://github.com/d-hackmt/SQL-SSE/tree/main/TAKEAWAYs
