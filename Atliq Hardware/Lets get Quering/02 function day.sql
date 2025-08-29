@@ -27,10 +27,17 @@ INterval 4 month))) as quarters
 from fact_sales_monthly;
 
 
+-- lets make a functions now 
+
+-- what is a function 
+
+-- In MySQL, a function is a stored program or a predefined routine that performs a specific task and returns a single value
+
 -- --------------------------------------------------------------------------
 --                       NOTE this code wont run 
 -- 							you need to create function  under functions column 
 --                       below are the ref codes
+
 
 -- Difference between deterministic and non deteministic
 
