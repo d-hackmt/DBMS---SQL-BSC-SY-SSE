@@ -1,201 +1,146 @@
--- lets explore sales
+## lets get FY   
 
-SELECT * FROM fact_sales_monthly limit 10;
+-- 1 april 2025
 
--- lets explore different products ---------------
+# normally extract a year 
 
-SELECT * FROM dim_product;
+SELECT YEAR("2025-04-1");
 
--- lets explore all unique columns from products
+# add 4 - only for atliq
 
-select distinct division from dim_product;
+SELECT YEAR(date_add("2025-09-1" ,
+ INterval 4 month));
+ 
+ 
+# 1 quarter == 3 months 
 
-select distinct segment from dim_product;
+-- 1 , 2 , 3  --- Q1
+-- 4 , 5 , 6  --- Q2
+-- 7 , 8 , 9  --- Q3
+-- 10 , 11 ,12  --- Q4
 
-select distinct category from dim_product;
+SELECT MONTH(date_add("2025-09-1" ,
+ INterval 4 month));
 
-select distinct product from dim_product;
+SELECT QUARTER("2025-09-1");
 
-select distinct variant from dim_product;
+## top 10 customers by sales  
 
-select product from dim_product
-where variant like "%Standard 3%";
-
-
-select * from dim_product
-where category like "%Mouse%";
-
-
--- lets explore different customers------------
-
-SELECT * FROM gdb0041.dim_customer;
-
-
--- lets explore all unique columns from customers
-
-SELECT distinct customer FROM dim_customer;
-
-SELECT distinct platform FROM dim_customer;
-
-SELECT distinct channel FROM dim_customer;
-
-SELECT distinct market FROM dim_customer;
-
-SELECT distinct sub_zone FROM dim_customer;
-
-SELECT distinct region FROM dim_customer;
-
-select * from dim_customer
-where platform = 'E-Commerce';
-
-select * from dim_customer
-where customer = 'Amazon';
-
-select * from dim_customer
-where channel = 'direct';
-
--- lets say i want to find out the sales of croma or flipcart or amazon customers---
-
-select * from fact_sales_monthly;
-
-SELECT customer_code FROM 
-gdb0041.dim_customer
-where customer like '%amazon%';
-
-select * from 
-fact_sales_monthly fa
-join dim_customer dc
-using (customer_code)
-where customer like '%amazon%'
+SELECt  * 
+from fact_sales_monthly
+group by customer_code
 order by sold_quantity DESC
-LIMIT 100;
+LIMIT 10 ;
 
--- Lets retrieve all the sales in Fiscal year = 2021
+## top 10 products by sales
 
-Select * from fact_sales_monthly;
-
-# we remember fy of atliq is sept(09)  - august (08)
-# we realise they are 4 months ahead of us 
-# if our new year start in jan - aliqs new year is in sept 
-# so 4 months
-
--- lets see how do we add 4 months to our date
-
-SELECT DATE_ADD('2025-9-22' , INTERVAL 4 MONTH);
-
-# lets get the fiscal year
-
-SELECT YEAR(DATE_ADD('2025-9-22' ,
- INTERVAL 4 MONTH)) as fy;
-
-
--- now Lets retrieve all the sales in Fiscal year = 2021 
-
-SELECT * from fact_sales_monthly 
-where YEAR(DATE_ADD(date , 
-INTERVAL 4 MONTH)) = 2021;
-
-SELECT 
-* 
-from fact_sales_monthly 
-where 
-(SELECT YEAR(DATE_ADD(date ,
- INTERVAL 4 MONTH))) = 2021;
-
--- now Lets retrieve all the sales to amazon in Fiscal year = 2021 
-
-SELECT * from fact_sales_monthly 
-where
-customer_code =  '90002008'
-and 
-YEAR(DATE_ADD(date , INTERVAL 4 MONTH)) = 2021;
-
--- lets get quarter of the fy now 
-
--- given date as input eg : 2025 - 09 - 01  --> FY 2026 , Q1
-
-# so we got month as 1 but not Q1
-SELECT 
-MONTH(DATE_ADD('2025-9-22' , 
-INTERVAL 4 MONTH)) as fy;
-
-SELECT 
-CASE
-	when MONTH(DATE_ADD('2025-9-22' , INTERVAL 4 MONTH)) in (1 , 2 ,3) then 'Q1'
-    when MONTH(DATE_ADD('2025-9-22' , INTERVAL 4 MONTH)) in (4 , 5 ,6) then 'Q2'
-    when MONTH(DATE_ADD('2025-9-22' , INTERVAL 4 MONTH)) in (7 , 8 ,9) then 'Q3'
-    when MONTH(DATE_ADD('2025-9-22' , INTERVAL 4 MONTH)) in (10 , 11 ,12) then 'Q4'
-END 
- as fy;
-
--- lets get for all the dates
-
-SELECT date,
-CASE
-	when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (1 , 2 ,3) then 'Q1'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (4 , 5 ,6) then 'Q2'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (7 , 8 ,9) then 'Q3'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (10 , 11 ,12) then 'Q4'
-END 
-as quater from
-fact_sales_monthly;
-
--- lets see distinct quarters
-
-SELECT distinct
-CASE
-	when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (1 , 2 ,3) then 'Q1'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (4 , 5 ,6) then 'Q2'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (7 , 8 ,9) then 'Q3'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (10 , 11 ,12) then 'Q4'
-END 
-as quater from
-fact_sales_monthly;
-
-
--- lets get  the fiscal year and quarter for all the dates
-
-SELECT * ,
-YEAR(DATE_ADD(date , INTERVAL 4 MONTH)) as fiscal_year,
-CASE
-	when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (1 , 2 ,3) then 'Q1'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (4 , 5 ,6) then 'Q2'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (7 , 8 ,9) then 'Q3'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (10 , 11 ,12) then 'Q4'
-END 
-as quater from
-fact_sales_monthly
+SELECt  * 
+from fact_sales_monthly
+group by product_code
+order by sold_quantity DESC
 LIMIT 10;
 
--- lets get the same for amazon after FY 2021
+# -------------------------------------------------------------------------------------------
+#                                   FLOW OF QUERYING
+#                                                                                  
+#            SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY                                                                         
+#                                                                                       
+# -------------------------------------------------------------------------------------------
 
-SELECT * ,
-YEAR(DATE_ADD(date , INTERVAL 4 MONTH)) as fiscal_year,
-CASE
-	when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (1 , 2 ,3) then 'Q1'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (4 , 5 ,6) then 'Q2'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (7 , 8 ,9) then 'Q3'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (10 , 11 ,12) then 'Q4'
-END 
-as quater from
-fact_sales_monthly
-where customer_code = "90002008"
-having fiscal_year > 2021
-LIMIT 10;
+## top 10 customers for Fy 2021
+
+SELECt  * 
+from fact_sales_monthly
+WHERE YEAR(date_add(date ,
+INterval 4 month)) = 2021
+group by customer_code
+order by sold_quantity DESC
+LIMIT 10 ;
+
+## top 10 products for Fy 2021
+SELECt  * 
+from fact_sales_monthly
+WHERE YEAR(date_add(date ,
+INterval 4 month)) = 2021
+group by product_code
+order by sold_quantity DESC
+LIMIT 10 ;
+
+## sales by croma / amazon for Fy 2021 and Q2
+
+# find the code for croma 
+
+SELECT * from dim_customer
+where customer like "%croma%";
+
+SELECT * from fact_sales_monthly
+where customer_code = "90002002";
+
+SELECT * from fact_sales_monthly
+where customer_code = "90002002"
+and YEAR(date_add(date ,
+INterval 4 month)) = 2021 
+and quarter(date) = 2
+order by sold_quantity DESC;
 
 
-# other way of getting quarters
 
-SELECT * ,
-YEAR(DATE_ADD(date , INTERVAL 4 MONTH)) as fiscal_year,
-CASE
-	when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (1 , 2 ,3) then 'Q1'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (4 , 5 ,6) then 'Q2'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (7 , 8 ,9) then 'Q3'
-    when MONTH(DATE_ADD( date , INTERVAL 4 MONTH)) in (10 , 11 ,12) then 'Q4'
-END 
-as quater from
-fact_sales_monthly
-where customer_code = "90002008"
-having fiscal_year > 2021
-LIMIT 10;
+SELECT * 
+from fact_sales_monthly
+where customer_code = 
+(
+SELECT customer_code
+from dim_customer
+where customer 
+like "%croma%"
+)
+and YEAR(date_add(date ,
+INterval 4 month)) = 2021 
+and quarter(date) = 2
+order by sold_quantity 
+DESC;
+
+
+
+## add FY , Quarter to out sales table
+# calculated columns
+
+# show all sales for fy 2021
+SELECT 
+* , 
+YEAR(date_add(date ,
+INterval 4 month)) as fy ,
+quarter(date) as quarters
+from fact_sales_monthly;
+
+
+
+
+with any_table as 
+(
+SELECT 
+* , 
+YEAR(date_add(date ,
+INterval 4 month)) as fy ,
+quarter(date) as quarters
+from fact_sales_monthly
+)
+
+SELECT * from any_table
+where fy = 2021;
+
+
+# cte - common table expressions
+with fy_table as 
+(
+SELECT 
+* , 
+YEAR(date_add(date ,
+INterval 4 month)) as fy ,
+quarter(date) as quarter
+from fact_sales_monthly
+)
+SELECT * from fy_table
+where fy = 2018;
+
+
