@@ -130,36 +130,30 @@ group by market;
 
 
 CREATE PROCEDURE `get_market_badge`(
-        	IN in_market VARCHAR(45),
-        	IN in_fiscal_year YEAR,
-        	OUT out_level VARCHAR(45)
+	IN fys int , 
+	IN market varchar(45),
+    OUT badge varchar(45)
 )
 BEGIN
-	 DECLARE qty INT DEFAULT 0;
 
-	 # Default market is India
-	 IF in_market = "" THEN
-		  SET in_market="India";
-	 END IF;
 
-	 # Retrieve total sold quantity for a given market in a given year
-		SELECT 
-			SUM(s.sold_quantity) INTO qty
-		from fact_sales_monthly s
-		join dim_customer c 
-		using (customer_code)
-			where get_fiscal_year(s.date) = in_fiscal_year
-			and c.market = in_market
-		GROUP by c.market;
+declare qty int default 0;
 
-	 # Determine Gold vs Silver status
-	 IF qty > 5000000 THEN
-		  SET out_level = 'Gold';
-	 ELSE
-		  SET out_level = 'Silver';
-	 END IF;
+SELECT 
+SUM(s.sold_quantity) INTO qty
+from fact_sales_monthly s
+join dim_customer c 
+using (customer_code)
+where get_fiscal_year(s.date) = fys
+and c.market = market
+GROUP by c.market;
+
+IF qty > 5000000
+THEN set badge = "glod";
+ELSE set badge = "sil";
+END IF; 
+
 END
-
 
 */
 
