@@ -148,8 +148,8 @@ BEGIN
 		from fact_sales_monthly s
 		join dim_customer c 
 		using (customer_code)
-			where get_fiscal_year(s.date) = fys
-			and c.market = market
+			where get_fiscal_year(s.date) = in_fiscal_year
+			and c.market = in_market
 		GROUP by c.market;
 
 	 # Determine Gold vs Silver status
