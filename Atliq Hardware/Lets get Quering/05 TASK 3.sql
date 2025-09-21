@@ -143,14 +143,14 @@ BEGIN
 	 END IF;
 
 	 # Retrieve total sold quantity for a given market in a given year
-	 SELECT 
-		  SUM(s.sold_quantity) INTO qty
-	 FROM fact_sales_monthly s
-	 JOIN dim_customer c
-	 ON s.customer_code=c.customer_code
-	 WHERE 
-		  get_fiscal_year(s.date)=in_fiscal_year AND
-		  c.market=in_market;
+		SELECT 
+			SUM(s.sold_quantity) INTO qty
+		from fact_sales_monthly s
+		join dim_customer c 
+		using (customer_code)
+			where get_fiscal_year(s.date) = fys
+			and c.market = market
+		GROUP by c.market;
 
 	 # Determine Gold vs Silver status
 	 IF qty > 5000000 THEN
