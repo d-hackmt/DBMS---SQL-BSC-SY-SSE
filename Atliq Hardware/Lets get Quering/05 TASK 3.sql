@@ -149,8 +149,8 @@ and c.market = market
 GROUP by c.market;
 
 IF qty > 5000000
-THEN set badge = "glod";
-ELSE set badge = "sil";
+THEN set badge = "GOLD";
+ELSE set badge = "SILVER";
 END IF; 
 
 END
