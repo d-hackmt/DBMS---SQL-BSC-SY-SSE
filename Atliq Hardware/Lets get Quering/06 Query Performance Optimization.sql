@@ -144,6 +144,7 @@ where
 	s.customer_code = 90002002
 and s.fiscal_year = 2021;
 
+# now check performance
 
 EXPLAIN ANALYZE
 SELECT
@@ -164,3 +165,4 @@ where
 	s.customer_code = 90002002
 and s.fiscal_year = 2021;
 
+# cool we have optmized this
