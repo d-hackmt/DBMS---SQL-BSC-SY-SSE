@@ -46,3 +46,4 @@ https://www.youtube.com/results?search_query=supply+chain+dashboard+powrer+bi
 <img width="2000" height="1204" alt="image" src="https://github.com/user-attachments/assets/40bd66cb-ec0e-48d1-94df-e64d5e3867bb" />
 
 
+LIVE LINK : https://docs.google.com/spreadsheets/d/1Is683ivNnDsThxnx19smdmrQNkiI2zxg1gVQZtlidq8/edit?usp=sharing
