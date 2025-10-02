@@ -26,6 +26,11 @@ eg :
 6) Reporting & Dashboards
 
 
+### Give it a try for targetting Supply Chain Analyst : 
+
+https://www.youtube.com/results?search_query=supply+chain+dashboard+powrer+bi
+
+
 ## Example of Supply chain dashbaord : 
 
 #### 1) 
