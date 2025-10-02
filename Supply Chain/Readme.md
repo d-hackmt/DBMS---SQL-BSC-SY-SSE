@@ -28,12 +28,15 @@ eg :
 
 ## Example of Supply chain dashbaord : 
 
-1) 
+#### 1) 
 
 <img width="1473" height="1080" alt="image" src="https://github.com/user-attachments/assets/e714b95c-3823-4fde-b98f-0402df9e9f2f" />
 
 
-2)   
+
+
+
+#### 2)   
 
 <img width="2000" height="1204" alt="image" src="https://github.com/user-attachments/assets/40bd66cb-ec0e-48d1-94df-e64d5e3867bb" />
 
